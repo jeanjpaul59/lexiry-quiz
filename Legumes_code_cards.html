@@ -1,0 +1,961 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Layla - légumes + code</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f7f7; color: #222; }
+    h1 { margin-bottom: 6px; }
+    .subtitle { color: #666; margin-bottom: 20px; }
+    .toolbar { margin-bottom: 20px; }
+    .toolbar button { margin-right: 10px; padding: 8px 12px; cursor: pointer; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .flashcard { perspective: 1000px; cursor: pointer; height: 180px; }
+    .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); padding: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .flashcard-front { background: #ffffff; border: 1px solid #ddd; }
+    .flashcard-back { background: #eef4ff; border: 1px solid #c7d7f2; transform: rotateY(180deg); }
+    .question { font-size: 22px; font-weight: bold; line-height: 1.35; }
+    .note { margin-top: 10px; font-size: 16px; color: #1f4e79; font-weight: normal; }
+    .answer { font-size: 24px; font-weight: bold; color: #003366; line-height: 1.35; }
+    .hint { margin-top: 18px; color: #666; font-size: 14px; }
+    @media (max-width: 600px) {
+      body { margin: 14px; }
+      .flashcard { height: 160px; }
+      .question { font-size: 20px; }
+      .answer { font-size: 22px; }
+    }
+  </style>
+  <script>
+    function flipAll() {
+      document.querySelectorAll('.flashcard').forEach(el => el.classList.add('flipped'));
+    }
+    function unflipAll() {
+      document.querySelectorAll('.flashcard').forEach(el => el.classList.remove('flipped'));
+    }
+  </script>
+</head>
+<body>
+  <h1>Layla - légumes + code</h1>
+  <div class='subtitle'>FR-N°</div>
+  <div class='toolbar'>
+    <button onclick='flipAll()'>Tout retourner</button>
+    <button onclick='unflipAll()'>Tout remettre</button>
+  </div>
+  <div class='cards-grid'>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AIL BLANC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>216</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AIL FILET X3      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>223</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AIL ÉPLUCHÉ      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>2789</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AIL PULPE 1KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>27837</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AIL PULPE SOKODAIL      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>32558</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AIL VIOLET      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>22082</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ANETH BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>24440</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ANONE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>503</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ARTICHAUT      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>140</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ASPERGE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>24102</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ASPERGE 420G      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>13201</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ASPERGE SACHET      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>3041</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AUBERGINE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>209</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AUBERGINE RAYÉE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>118328</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AVOCAT      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>334</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AVOCAT 1KG FILET      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>373</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>AVOCAT TROPICAL      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>122</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>BASILIC BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>554</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>BATAVIA      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>233</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>BETTERAVE 500G      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>328</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>BETTERAVE BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>116069</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>BLETTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>302</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>BROCOLIS      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>291</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CARDE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>283</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CAROTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>204</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CAROTTE BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>238</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CAROTTE BOTTE COLOR      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>115573</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CAROTTE 2KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>108929</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CÉLERI BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>260</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CÉLERI RAVE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>267</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHAMPIGNON BARQUETTE 500G      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>346</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHAMPIGNON BRUN      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>424</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHAMPIGNON PARIS VRAC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>217</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHAMPIGNONS ÉMINCÉS BARQUETTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>12063</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHAYOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>335</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHOUX BLANC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>232</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHOUX DE BRUXELLES      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>294</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHOUX CHINOIS      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>16698</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHOUX FLEUR      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>234</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHOUX ROUGE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>285</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CHOUX VERT      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>265</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CIBOULETTE BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>24441</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>COCO PLAT      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>266</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CONCOMBRE MINI      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>235</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CONCOMBRE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>243</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CONCOMBRE NOA      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>318</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>COURGE BIO      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>31859</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>COURGE BUTTERNUTS      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>286</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>COURGETTE BLANCHE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>245</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>COURGETTE RONDE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>14695</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>COURGETTE VERTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>203</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>CORIANDRE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>13963</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ÉCHALOTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>222</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ENDIVE SACHET 1KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>14696</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ÉPINARD      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>390</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ÉPINARD SACHET 500G      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>16883</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>FENOUIL      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>225</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>FEUILLES CHÊNE VERTES      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>218</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>FEUILLES CHÊNE ROUGES      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>13952</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>FÈVES      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>281</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>GINGEMBRE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>240</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>GOMBO      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>270</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>HARICOTS ÉCOSSE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>15413</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>HARICOTS VERTS      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>30490</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>IGNAME      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>22881</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>LAITUE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>290</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MÂCHE PICTVERT 150G      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>290</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MAÏS      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>292</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MANIOC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>259</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MARRON      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>321</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MAUVE BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>555</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MENTHE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>13966</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>MÉLANGES JEUNES POUSSES      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>299</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>NAVET      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>229</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>NAVET AMER      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>25976</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>NAVET BOULE D'OR      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>24146</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>NAVET MARTEAU      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>23936</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>NOISETTES      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>623</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>NOIX      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>305</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNON BLANC VRAC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>289</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNON JAUNE VRAC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>208</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNON BLANC BOTTE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>248</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNONS JAUNES 1KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>327</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNONS JAUNES 5KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>214</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNON ROUGES 5KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>22199</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNON ROUGE VRAC      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>206</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNONS ROUGES 1KG      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>64</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>OIGNONS ROSCOFF      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>398</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>PANAÏS      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>11834</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>PATATE DOUCE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>215</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>PDT GRENAILLE      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>612</div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class='hint'>Clique sur une carte pour voir la réponse.</div>
+</body>
+</html>
