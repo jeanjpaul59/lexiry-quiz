@@ -1,0 +1,495 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Test aléatoire n°11 - Révisions 01</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f7f7; color: #222; }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    h1 { margin-bottom: 6px; line-height: 1.2; }
+    .subtitle { color: #666; margin-bottom: 18px; }
+    .toolbar-top { margin-bottom: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .toolbar-top button { padding: 12px 16px; font-size: 15px; cursor: pointer; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .counter { font-size: 18px; color: #444; }
+    .question-label, .answer-label { font-weight: bold; font-size: 16px; margin-bottom: 8px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .panel { border: 1px solid #d8d8d8; border-radius: 10px; padding: 14px; min-height: 140px; background: #fafafa; }
+    .question { font-size: 34px; font-weight: bold; line-height: 1.3; word-break: break-word; }
+    .speak-btn { padding: 6px 10px; font-size: 18px; cursor: pointer; border-radius: 8px; border: 1px solid #bbb; background: #f1f1f1; }
+    .note { margin-top: 12px; color: #1f4e79; font-size: 18px; line-height: 1.4; }
+    .answer-wrap { display: flex; gap: 10px; align-items: stretch; }
+    .answer-main { flex: 1; }
+    input[type='text'] { width: 100%; padding: 14px; font-size: 34px; border: 1px solid #bbb; border-radius: 8px; box-sizing: border-box; }
+    .help-btn { width: 64px; min-width: 64px; border: 1px solid #7ea1c9; background: #dfeaf8; border-radius: 8px; font-size: 28px; cursor: pointer; }
+    .help-btn:disabled { opacity: 0.5; cursor: default; }
+    .info-row { margin-top: 18px; display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 12px; }
+    .info-box { border: 1px solid #ddd; background: #fafafa; border-radius: 8px; padding: 10px 12px; }
+    .info-label { color: #666; font-size: 13px; margin-bottom: 4px; }
+    .info-value { font-size: 20px; }
+    .review-yes { color: #b00020; font-weight: bold; }
+    .review-no { color: #0a7a20; font-weight: bold; }
+    .nav-row { margin-top: 18px; display: grid; grid-template-columns: 1fr 160px 1fr; gap: 10px; align-items: center; }
+    .nav-row button { padding: 14px 18px; font-size: 18px; min-height: 52px; cursor: pointer; }
+    .langpair { text-align: center; border: 1px solid #ddd; background: #fafafa; border-radius: 8px; padding: 14px 10px; font-size: 20px; }
+    .status-line { margin-top: 14px; min-height: 28px; font-size: 16px; }
+    .warn { color: #9a6700; font-weight: bold; }
+    .ok { color: #0a7a20; font-weight: bold; }
+    .done { text-align: center; padding: 36px; }
+    .done h2 { margin-bottom: 16px; }
+    .done .big { font-size: 28px; font-weight: bold; margin-bottom: 18px; }
+    @media (max-width: 760px) {
+      body { margin: 12px; }
+      .grid2 { grid-template-columns: 1fr; }
+      .question { font-size: 26px; }
+      input[type='text'] { font-size: 26px; }
+      .info-row { grid-template-columns: 1fr 1fr; }
+      .nav-row { grid-template-columns: 1fr; }
+      .langpair { order: -1; }
+      .toolbar-top button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class='wrap'>
+    <h1>Test aléatoire n°11 - Révisions 01</h1>
+    <div class='subtitle'>FR-RU</div>
+    <div class='toolbar-top'>
+      <button onclick='restartSession()'>Recommencer cette session</button>
+      <button onclick='reviewPending()'>Revoir éléments non validés</button>
+      <button onclick='shuffleQuestions()'>Mélanger les questions</button>
+      <button onclick='resetProgress()'>Réinitialiser la progression</button>
+    </div>
+    <div class='card' id='quizCard'></div>
+  </div>
+  <script>
+    const quizId = 46;
+    const storageKey = 'lexiry_typing_' + quizId;
+    const orderKey = storageKey + '_order';
+    const items = [
+      {id: 1334, q: " remplacement ", a: "замена", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1335, q: " risque ", a: "риск", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 0},
+      {id: 1336, q: "famille ", a: "семья", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1337, q: " apprentissage automatique ", a: "машинное обучение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1338, q: "religieux / religieuse ", a: "религиозный", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1339, q: "changer", a: "измениться", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1340, q: " contrôle ", a: "контроль", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1341, q: " utiliser ", a: "использовать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1342, q: " préoccupation ", a: "беспокойство", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1343, q: "conversation", a: "разговор", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1344, q: " fuite de données ", a: "утечка данных", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1345, q: "réaction", a: "реакция", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1346, q: " erreur ", a: "ошибка", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1347, q: "résurrection ", a: "воскресение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1348, q: "société", a: "общество", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1349, q: "centre culturel", a: "центр культуры", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1350, q: "événement", a: "событие", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1351, q: " utilisateur ", a: "пользователь", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1352, q: " automatisation ", a: "автоматизация", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1353, q: "teindre / colorer les œufs ", a: "красить яйца", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1354, q: " menace ", a: "угроза", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1355, q: "tradition ", a: "традиция", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1356, q: " panne ", a: "сбой", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 0},
+      {id: 1357, q: " modèle ", a: "модель", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1358, q: "vie ", a: "жизнь", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1359, q: "pain sucré ", a: "сладкий хлеб", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1360, q: " avenir", a: "будущее", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1361, q: "lettre", a: "письмо", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1362, q: "église ", a: "церковь", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1363, q: "noblesse", a: "дворянство", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1364, q: "calendrier ", a: "календарь", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1365, q: "être considéré comme", a: "считаться", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1366, q: "se réunir ", a: "собираться", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1367, q: "bombardement", a: "бомбардировка", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1368, q: "fête ", a: "праздник", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1369, q: "printemps ", a: "весна", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1370, q: "proches", a: "близкие", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1371, q: " apprentissage profond ", a: "глубокое обучение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1372, q: " améliorer ", a: "улучшать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1373, q: "haute culture", a: "высокая культура", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1374, q: "espérer", a: "надеяться", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1375, q: "souffrance", a: "страдание", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1376, q: "joie ", a: "радость", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1377, q: "reconstruction", a: "восстановление", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1378, q: " chômage ", a: "безработица", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1379, q: " réseau de neurones ", a: "нейронная сеть", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1380, q: "Le Christ est ressuscité ! ", a: "Христос воскрес!", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1381, q: " intelligence artificielle ", a: "искусственный интеллект", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 4},
+      {id: 1382, q: "bal", a: "бал", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 0},
+      {id: 1383, q: "célébrer ", a: "отмечать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1384, q: "cuire / préparer ", a: "печь", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 0},
+      {id: 1385, q: " chercheur ", a: "исследователь", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1386, q: "littérature", a: "литература", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1387, q: "soutenir", a: "поддержать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1388, q: " cybersécurité ", a: "кибербезопасность", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1389, q: "influencer", a: "влиять", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1390, q: " base de données ", a: "база данных", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1391, q: "sécurité", a: "безопасность", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1392, q: "Jésus-Christ ", a: "Иисус Христос", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1393, q: "être obligés", a: "вынуждены", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1394, q: "se préparer ", a: "готовиться", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1395, q: "subir", a: "подвергнуться", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1396, q: "quitter", a: "покинуть", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1397, q: "attitude", a: "отношение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1398, q: "haute société", a: "светское общество", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1399, q: "philosophie", a: "философия", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1400, q: "aristocratie", a: "аристократия", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1401, q: "éducation", a: "воспитание", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1402, q: "séparer", a: "разделить / разделены", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 4},
+      {id: 1403, q: " entreprise ", a: "компания", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1404, q: " prédire ", a: "предсказывать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1405, q: " traiter ", a: "обрабатывать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1406, q: "précepteur", a: "гувернёр", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1407, q: " créer ", a: "создавать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1408, q: "pertes", a: "потери", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1409, q: " confiance ", a: "доверие", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1410, q: "plat ", a: "блюдо", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1411, q: "invasion", a: "вторжение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1412, q: "à grande échelle / à grande ampleur", a: "полномасштабный", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1413, q: " données personnelles ", a: "личные данные", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1414, q: " spécialiste ", a: "специалист", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1415, q: "réfugié", a: "беженец", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1416, q: "œuf ", a: "яйцо", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 0},
+      {id: 1417, q: "culture nationale", a: "национальная культура", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 4},
+      {id: 1418, q: " ingénieur ", a: "инженер", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1419, q: " confidentialité ", a: "конфиденциальность", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1420, q: "gâteau de Pâques russe (koulitch) ", a: "кулич", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1421, q: " reconnaître ", a: "распознать / распознавать", note: "v.,imp/perf", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 5},
+      {id: 1422, q: " analyser ", a: "анализировать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1423, q: " travail ", a: "работа", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1424, q: " entraîner ", a: "обучать", note: " (модель)", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1425, q: "Pâques ", a: "Пасха", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1426, q: "Il est vraiment ressuscité ! ", a: "Воистину воскрес!", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1427, q: "gouvernante", a: "гувернантка", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1428, q: "apprécier / valoriser", a: "ценить", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1429, q: "espoir ", a: "надежда", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1430, q: "populaire", a: "популярный", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1431, q: "destruction", a: "разрушение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1432, q: "éducation", a: "образование", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1433, q: "jeune âge", a: "ранний возраст", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1434, q: " algorithme ", a: "алгоритм", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1435, q: "bonne fête ! ", a: "с праздником!", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1436, q: "réception", a: "приём", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1437, q: " développeur ", a: "разработчик", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1438, q: " développer ", a: "разрабатывать", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1439, q: "noble", a: "дворянин", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1440, q: " transparence ", a: "прозрачность", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1441, q: " profession ", a: "профессия", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1442, q: " boîte noire ", a: "чёрный ящик", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1443, q: " inquiétude ", a: "опасение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1444, q: " piratage ", a: "взлом", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1445, q: " données ", a: "данные", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1446, q: " explication ", a: "объяснение", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 2},
+      {id: 1447, q: " responsabilité ", a: "ответственность", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 3},
+      {id: 1448, q: " remplacer ", a: "заменять", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1449, q: "salon", a: "салон", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1},
+      {id: 1450, q: " protection ", a: "защита", note: "", levelId: 1, levelName: "Débutant", charsPerAllowedError: 5, allowedErrors: 1}
+    ];
+    let currentItems = [...items];
+    let currentIndex = 0;
+    let currentMode = 'all';
+    let savedResults = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    function speak(text) {
+      if (!text) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'ru-RU';
+      speechSynthesis.speak(utterance);
+    }
+    function saveResults() {
+      localStorage.setItem(storageKey, JSON.stringify(savedResults));
+    }
+    function saveOrder() {
+      localStorage.setItem(orderKey, JSON.stringify(currentItems.map(item => item.id)));
+    }
+    function loadSavedOrder() {
+      const savedOrder = JSON.parse(localStorage.getItem(orderKey) || 'null');
+      if (!savedOrder || !Array.isArray(savedOrder) || savedOrder.length !== items.length) return false;
+      const map = new Map(items.map(item => [item.id, item]));
+      const reordered = savedOrder.map(id => map.get(id)).filter(Boolean);
+      if (reordered.length !== items.length) return false;
+      currentItems = reordered;
+      return true;
+    }
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+    function getDefaultState(item) {
+      return {
+        userAnswer: '',
+        errorCount: 0,
+        helpCount: 0,
+        isCorrect: false,
+        isMarkedForReview: true,
+        status: 'unanswered'
+      };
+    }
+    function getState(item) {
+      if (!savedResults[item.id]) {
+        savedResults[item.id] = getDefaultState(item);
+      }
+      return savedResults[item.id];
+    }
+    function recomputeState(item) {
+      const st = getState(item);
+      const isCorrect = (st.userAnswer === item.a);
+      st.isCorrect = isCorrect;
+      if (isCorrect) {
+        st.isMarkedForReview = (st.errorCount > item.allowedErrors);
+        st.status = st.isMarkedForReview ? 'review' : 'correct';
+      } else {
+        st.isMarkedForReview = true;
+        st.status = (st.userAnswer === '') ? 'unanswered' : 'partial';
+      }
+      saveResults();
+    }
+    function getPendingItems() {
+      return items.filter(item => {
+        const st = getState(item);
+        return !(st.isCorrect === true && st.isMarkedForReview === false);
+      });
+    }
+    function getValidCount() {
+      return items.filter(item => {
+        const st = getState(item);
+        return st.isCorrect === true && st.isMarkedForReview === false;
+      }).length;
+    }
+    function getCorrectCount() {
+      return items.filter(item => getState(item).isCorrect === true).length;
+    }
+    function getStartedCount() {
+      return items.filter(item => getState(item).userAnswer !== '').length;
+    }
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+    function renderQuestion() {
+      const card = document.getElementById('quizCard');
+      if (currentItems.length === 0) { renderEmpty(); return; }
+      if (currentIndex < 0) currentIndex = 0;
+      if (currentIndex >= currentItems.length) { renderDone(); return; }
+      const item = currentItems[currentIndex];
+      const st = getState(item);
+      recomputeState(item);
+      card.innerHTML =
+        '<div class="topline">' +
+          '<div class="counter">Question ' + (currentIndex + 1) + ' / ' + currentItems.length + '</div>' +
+          '<div class="counter">Validés : ' + getValidCount() + ' / ' + items.length + ' — Commencés : ' + getStartedCount() + ' / ' + items.length + '</div>' +
+        '</div>' +
+        '<div class="grid2">' +
+          '<div>' +
+            '<div class="question-label">Question</div>' +
+            '<div class="panel"><div class="question">' + escapeHtml(item.q) + '</div>' + (item.note ? '<div class="note">[' + escapeHtml(item.note) + ']</div>' : '') + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="answer-label">Réponse</div>' +
+            '<div class="panel"><div class="answer-wrap"><div class="answer-main"><input type="text" id="userAnswer" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="text" value="' + escapeHtml(st.userAnswer) + '"></div><button class="help-btn" id="btnHelp" title="Révéler la lettre suivante">?</button><button class="help-btn" id="btnSpeakQuestion" title="Écouter la réponse russe (+1 erreur)">&#128266;</button></div><div class="status-line" id="statusLine"></div></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="nav-row">' +
+          '<button id="btnPrev">&lt;-- Précédent</button>' +
+          '<div class="langpair">' + escapeHtml('FR-RU') + '</div>' +
+          '<button id="btnNext">Suivant --&gt;</button>' +
+        '</div>' +
+        '<div class="info-row">' +
+          '<div class="info-box"><div class="info-label">Nb d’erreurs</div><div class="info-value" id="errorCount">' + st.errorCount + '</div></div>' +
+          '<div class="info-box"><div class="info-label">Nb d’erreurs autorisées</div><div class="info-value">' + item.allowedErrors + '</div></div>' +
+          '<div class="info-box"><div class="info-label">Tolérance d’erreurs</div><div class="info-value">' + escapeHtml(item.levelName || '') + '</div></div>' +
+          '<div class="info-box"><div class="info-label">À revoir</div><div id="reviewFlag" class="info-value ' + (st.isMarkedForReview ? 'review-yes' : 'review-no') + '">' + (st.isMarkedForReview ? 'Oui' : 'Non') + '</div></div>' +
+        '</div>';
+      const input = document.getElementById('userAnswer');
+      const btnHelp = document.getElementById('btnHelp');
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const btnSpeakQuestion = document.getElementById('btnSpeakQuestion');
+      if (btnSpeakQuestion) btnSpeakQuestion.addEventListener('click', function() { st.errorCount += 1; recomputeState(item); updateStatusLine(); speak(item.a); });
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+      btnPrev.disabled = (currentIndex === 0);
+      btnHelp.disabled = st.isCorrect || st.userAnswer.length >= item.a.length;
+      updateStatusLine();
+      input.addEventListener('paste', function(e) { e.preventDefault(); });
+      input.addEventListener('input', function() {
+        handleTyping(item);
+      });
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          if (getState(item).isCorrect) nextQuestion();
+        }
+      });
+      btnHelp.addEventListener('click', function() {
+        revealNextLetter(item);
+      });
+      btnPrev.addEventListener('click', function() { previousQuestion(); });
+      btnNext.addEventListener('click', function() { nextQuestion(); });
+    }
+    function updateStatusLine() {
+      const item = currentItems[currentIndex];
+      if (!item) return;
+      const st = getState(item);
+      const el = document.getElementById('statusLine');
+      if (!el) return;
+      if (st.isCorrect) {
+        el.innerHTML = '<span class="ok">Mot complet.</span>';
+      } else if (st.userAnswer !== '') {
+        el.innerHTML = '<span class="warn">Réponse en cours.</span>';
+      } else {
+        el.innerHTML = '';
+      }
+      const err = document.getElementById('errorCount');
+      const rev = document.getElementById('reviewFlag');
+      const btnHelp = document.getElementById('btnHelp');
+      if (err) err.textContent = st.errorCount;
+      if (rev) {
+        rev.textContent = st.isMarkedForReview ? 'Oui' : 'Non';
+        rev.className = 'info-value ' + (st.isMarkedForReview ? 'review-yes' : 'review-no');
+      }
+      if (btnHelp) btnHelp.disabled = st.isCorrect || st.userAnswer.length >= item.a.length;
+    }
+    function handleTyping(item) {
+      const input = document.getElementById('userAnswer');
+      const st = getState(item);
+      const previous = st.userAnswer || '';
+      const typed = input.value || '';
+      if (typed === previous) return;
+      if (typed.length < previous.length) {
+        st.userAnswer = typed;
+        recomputeState(item);
+        updateStatusLine();
+        return;
+      }
+      if (typed.length > previous.length + 1) {
+        input.value = previous;
+        input.setSelectionRange(previous.length, previous.length);
+        return;
+      }
+      const nextPos = typed.length;
+      const expectedPrefix = item.a.substring(0, nextPos);
+      if (typed !== expectedPrefix) {
+        st.errorCount += 1;
+        input.value = previous;
+        input.setSelectionRange(previous.length, previous.length);
+        recomputeState(item);
+        updateStatusLine();
+        return;
+      }
+      st.userAnswer = typed;
+      recomputeState(item);
+      updateStatusLine();
+    }
+    function revealNextLetter(item) {
+      const input = document.getElementById('userAnswer');
+      const st = getState(item);
+      if (st.isCorrect) return;
+      const nextPos = st.userAnswer.length + 1;
+      if (nextPos > item.a.length) return;
+      st.userAnswer = item.a.substring(0, nextPos);
+      st.errorCount += 1;
+      st.helpCount += 1;
+      input.value = st.userAnswer;
+      input.setSelectionRange(st.userAnswer.length, st.userAnswer.length);
+      recomputeState(item);
+      updateStatusLine();
+      input.focus();
+    }
+    function nextQuestion() {
+      currentIndex += 1;
+      renderQuestion();
+    }
+    function previousQuestion() {
+      if (currentIndex > 0) {
+        currentIndex -= 1;
+        renderQuestion();
+      }
+    }
+    function shuffleQuestions() {
+      const currentId = currentItems[currentIndex] ? currentItems[currentIndex].id : null;
+      currentMode = 'all';
+      currentItems = [...items];
+      if (currentItems.length > 1) {
+        let attempts = 0;
+        do {
+          shuffleArray(currentItems);
+          attempts += 1;
+        } while (currentItems[0].id === currentId && attempts < 10);
+      }
+      currentIndex = 0;
+      saveOrder();
+      renderQuestion();
+    }
+    function restartSession() {
+      if (!confirm('Recommencer la session depuis zéro ?')) return;
+      items.forEach(item => {
+        savedResults[item.id] = getDefaultState(item);
+      });
+      saveResults();
+      currentMode = 'all';
+      if (!loadSavedOrder()) currentItems = [...items];
+      currentIndex = 0;
+      renderQuestion();
+    }
+    function reviewPending() {
+      const pendingItems = getPendingItems();
+      if (pendingItems.length === 0) {
+        alert('Tout est validé.');
+        return;
+      }
+      pendingItems.forEach(item => {
+        savedResults[item.id] = getDefaultState(item);
+      });
+      saveResults();
+      currentMode = 'pending';
+      currentItems = pendingItems;
+      currentIndex = 0;
+      renderQuestion();
+    }
+    function resetProgress() {
+      if (!confirm('Effacer toute la progression mémorisée ?')) return;
+      localStorage.removeItem(storageKey);
+      localStorage.removeItem(orderKey);
+      savedResults = {};
+      currentItems = [...items];
+      currentIndex = 0;
+      currentMode = 'all';
+      renderQuestion();
+    }
+    function renderDone() {
+      const card = document.getElementById('quizCard');
+      const validCount = getValidCount();
+      const correctCount = getCorrectCount();
+      const pendingCount = getPendingItems().length;
+      card.innerHTML =
+        '<div class="done">' +
+        '<h2>Session terminée</h2>' +
+        '<div class="big">Corrects : ' + correctCount + ' / ' + items.length + '</div>' +
+        '<div style="margin-bottom:10px;">Validés dans la tolérance : ' + validCount + ' / ' + items.length + '</div>' +
+        '<div style="margin-bottom:20px;">Éléments restant à valider : ' + pendingCount + '</div>' +
+        '<button onclick="restartSession()">Recommencer cette session</button> ' +
+        '<button onclick="reviewPending()">Revoir éléments non validés</button>' +
+        '</div>';
+    }
+    function renderEmpty() {
+      const card = document.getElementById('quizCard');
+      card.innerHTML =
+        '<div class="done">' +
+        '<h2>Aucun élément à afficher</h2>' +
+        '<button onclick="restartSession()">Revenir à la session complète</button>' +
+        '</div>';
+    }
+    loadSavedOrder();
+    saveOrder();
+    renderQuestion();
+  </script>
+</body>
+</html>
