@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Погода, времена года и глобальное потепление</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f7f7; color: #222; }
+    h1 { margin-bottom: 6px; }
+    .subtitle { color: #666; margin-bottom: 20px; }
+    .toolbar { margin-bottom: 20px; }
+    .toolbar button { margin-right: 10px; padding: 8px 12px; cursor: pointer; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .flashcard { perspective: 1000px; cursor: pointer; height: 180px; }
+    .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); padding: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .flashcard-front { background: #ffffff; border: 1px solid #ddd; }
+    .flashcard-back { background: #eef4ff; border: 1px solid #c7d7f2; transform: rotateY(180deg); }
+    .question { font-size: 22px; font-weight: bold; line-height: 1.35; }
+    .note { margin-top: 10px; font-size: 16px; color: #1f4e79; font-weight: normal; }
+    .answer { font-size: 24px; font-weight: bold; color: #003366; line-height: 1.35; }
+    .hint { margin-top: 18px; color: #666; font-size: 14px; }
+    @media (max-width: 600px) {
+      body { margin: 14px; }
+      .flashcard { height: 160px; }
+      .question { font-size: 20px; }
+      .answer { font-size: 22px; }
+    }
+  </style>
+  <script>
+    function flipAll() {
+      document.querySelectorAll('.flashcard').forEach(el => el.classList.add('flipped'));
+    }
+    function unflipAll() {
+      document.querySelectorAll('.flashcard').forEach(el => el.classList.remove('flipped'));
+    }
+  </script>
+</head>
+<body>
+  <h1>Погода, времена года и глобальное потепление</h1>
+  <div class='subtitle'>FR-RU</div>
+  <div class='toolbar'>
+    <button onclick='flipAll()'>Tout retourner</button>
+    <button onclick='unflipAll()'>Tout remettre</button>
+  </div>
+  <div class='cards-grid'>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ralentir<div class='note'>[v.,imp/perf — le réchauffement climatique]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>замедлять / замедлить</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>développer<div class='note'>[v.,imp/perf — les énergies renouvelables]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>развивать / развить</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>économiser<div class='note'>[v.,imp — l’eau et l’électricité]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>экономить</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>trier<div class='note'>[v.,imp — les déchets]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>сортировать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>varié<div class='note'>[adj. — en parlant du climat]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>разнообразный</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>climat tempéré<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>умеренный климат</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>subtropical<div class='note'>[adj. — en parlant du climat]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>субтропический</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>gel / grand froid<div class='note'>[n. — notamment en Sibérie]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>мороз</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>humidité<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>влажность</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>variation de température<div class='note'>[expr. — brusque]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>перепад температуры</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>changeant<div class='note'>[adj. — en parlant de la météo]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>переменчивый</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>pergélisol<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>вечная мерзлота</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>chaleur anormale / canicule<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>аномальная жара</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>la météo<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>погода</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>le climat<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>климат</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>saison<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>время года</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>réchauffement climatique<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>глобальное потепление</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>gaz à effet de serre<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>парниковые газы</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>atmosphère<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>атмосфера</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>température<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>температура</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>sécheresse<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>засуха</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>incendie de forêt<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>лесной пожар</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>inondation<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>наводнение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>glacier<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>ледник</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>émissions<div class='note'>[n. — de gaz à effet de serre]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>выбросы</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ressources naturelles<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>природные ресурсы</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>déchets<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>отходы</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>contribution<div class='note'>[n. — apporter sa contribution]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>вклад</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>influencer<div class='note'>[v.,imp — sur l’humeur, la santé, les plans, l’économie]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>влиять (на)</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>augmenter<div class='note'>[v.,imp/perf — en parlant de la température]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>повышаться / повыситься</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>être observé<div class='note'>[v.,imp — en parlant de phénomènes climatiques]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>наблюдаться</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>diminuer<div class='note'>[v.,imp/perf — quantité de neige et de glaciers]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>сокращаться / сократиться</div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class='hint'>Clique sur une carte pour voir la réponse.</div>
+</body>
+</html>
