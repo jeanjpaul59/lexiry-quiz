@@ -1,0 +1,941 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>IA et Interstellar</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f7f7; color: #222; }
+    h1 { margin-bottom: 6px; }
+    .subtitle { color: #666; margin-bottom: 20px; }
+    .toolbar { margin-bottom: 20px; }
+    .toolbar button { margin-right: 10px; padding: 8px 12px; cursor: pointer; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .flashcard { perspective: 1000px; cursor: pointer; height: 180px; }
+    .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); padding: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .flashcard-front { background: #ffffff; border: 1px solid #ddd; }
+    .flashcard-back { background: #eef4ff; border: 1px solid #c7d7f2; transform: rotateY(180deg); }
+    .question { font-size: 22px; font-weight: bold; line-height: 1.35; }
+    .note { margin-top: 10px; font-size: 16px; color: #1f4e79; font-weight: normal; }
+    .answer { font-size: 24px; font-weight: bold; color: #003366; line-height: 1.35; }
+    .hint { margin-top: 18px; color: #666; font-size: 14px; }
+    @media (max-width: 600px) {
+      body { margin: 14px; }
+      .flashcard { height: 160px; }
+      .question { font-size: 20px; }
+      .answer { font-size: 22px; }
+    }
+  </style>
+  <script>
+    function flipAll() {
+      document.querySelectorAll('.flashcard').forEach(el => el.classList.add('flipped'));
+    }
+    function unflipAll() {
+      document.querySelectorAll('.flashcard').forEach(el => el.classList.remove('flipped'));
+    }
+  </script>
+</head>
+<body>
+  <h1>IA et Interstellar</h1>
+  <div class='subtitle'>FR-RU</div>
+  <div class='toolbar'>
+    <button onclick='flipAll()'>Tout retourner</button>
+    <button onclick='unflipAll()'>Tout remettre</button>
+  </div>
+  <div class='cards-grid'>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>film<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>фильм</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>données<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>данные</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>base de données<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>база данных</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>inquiétude<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>опасение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>préoccupation<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>беспокойство</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>risque<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>риск</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>menace<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>угроза</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>erreur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>ошибка</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>panne<div class='note'>[n. — système]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>сбой</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>données personnelles<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>личные данные</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>fuite de données<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>утечка данных</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>confidentialité<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>конфиденциальность</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>protection<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>защита</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>cybersécurité<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>кибербезопасность</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>piratage<div class='note'>[n. — informatique]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>взлом</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>boîte noire<div class='note'>[n. — fonctionnement difficile à expliquer]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>чёрный ящик</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>transparence<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>прозрачность</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>explication<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>объяснение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>contrôle<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>контроль</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>responsabilité<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>ответственность</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>confiance<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>доверие</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>travail<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>работа</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>profession<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>профессия</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>chômage<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>безработица</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>automatisation<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>автоматизация</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>remplacement<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>замена</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>avenir<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>будущее</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>réalisateur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>режиссёр</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>scène<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>сцена</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>personnage<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>персонаж</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>personnage principal<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>главный герой</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>intrigue / scénario<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>сюжет</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>spectateur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>зритель</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>science-fiction<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>научная фантастика</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>espace<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>космос</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>univers<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>вселенная</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>galaxie<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>галактика</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>planète<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>планета</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>étoile<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>звезда</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>trou noir<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>чёрная дыра</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>astronaute<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>астронавт</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>mission<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>миссия</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>voyage spatial<div class='note'>[n. — spatial]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>полёт</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>exploration spatiale<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>исследование космоса</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>humanité<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>человечество</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>survie<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>выживание</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>avenir<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>будущее</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>climat<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>климат</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>famine<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>голод</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>crise<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>кризис</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>développeur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>разработчик</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>ingénieur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>инженер</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>spécialiste<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>специалист</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>utilisateur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>пользователь</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>entreprise<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>компания</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>chercheur<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>исследователь</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>reconnaître<div class='note'>[v.,perf/imp — un visage, une image]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>распознать / распознавать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>développer<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>разрабатывать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>créer<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>Создавать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>utiliser<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>использовать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>entraîner<div class='note'>[v.,imp — une IA]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>обучать (модель)</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>analyser<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>анализировать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>traiter<div class='note'>[v.,imp — des données]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>обрабатывать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>prédire<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>предсказывать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>remplacer<div class='note'>[v.,imp — remplacer quelqu’un/qqch.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>заменять</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>améliorer<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>улучшать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>intelligence artificielle<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>искусственный интеллект</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>algorithme<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>алгоритм</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>modèle<div class='note'>[n. — IA]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>модель</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>réseau de neurones<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>нейронная сеть</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>apprentissage automatique<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>машинное обучение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>apprentissage profond<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>глубокое обучение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>message<div class='note'>[n. — du film]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>послание</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>opinion<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>мнение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>impression<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>впечатление</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>signification<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>значение</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>réaliste<div class='note'>[adj.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>реалистичный</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>danger<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>опасность</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>avantage<div class='note'>[n.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>преимущество</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>recommander<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>рекомендовать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>se dérouler<div class='note'>[v.,imp — film / histoire]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>происходить</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>être confronté à<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>сталкиваться с</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>aborder<div class='note'>[v.,imp — un thème / sujet]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>затрагивать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>considérer<div class='note'>[v.,imp — opinion]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>считать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>imaginer<div class='note'>[v.,imp — dans le sens d’imaginer]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>представлять</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>expliquer<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>объяснять</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>recommander<div class='note'>[v.,imp]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>рекомендовать</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>dans la mission<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>в миссии</div>
+    </div>
+  </div>
+</div>
+<div class='flashcard' onclick="this.classList.toggle('flipped')">
+  <div class='flashcard-inner'>
+    <div class='flashcard-front'>
+      <div class='question'>avec un robot<div class='note'>[expr.]</div>      </div>
+    </div>
+    <div class='flashcard-back'>
+      <div class='answer'>с роботом</div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class='hint'>Clique sur une carte pour voir la réponse.</div>
+</body>
+</html>
