@@ -250,7 +250,12 @@
       if (btnHelp) btnHelp.disabled = st.isCorrect || st.userAnswer.length >= item.a.length;
     }
     function normalizeForComparison(text) {
-      return String(text).normalize('NFC').replace(/[‘’'`´]/g, String.fromCharCode(39)).replace(/œ/g, 'oe').replace(/Œ/g, 'Oe').toLocaleLowerCase('fr');
+      return String(text || '').normalize('NFC')
+        .replace(/[‘’'`´]/g, String.fromCharCode(39))
+        .replace(/[\u00AB\u00BB\u201C\u201D\u201E\u201F]/g, String.fromCharCode(34))
+        .replace(/[\u00A0\u202F]/g, ' ')
+        .replace(/œ/g, 'oe').replace(/Œ/g, 'Oe')
+        .toLocaleLowerCase('fr');
     }
     function handleTyping(item) {
       const input = document.getElementById('userAnswer');
