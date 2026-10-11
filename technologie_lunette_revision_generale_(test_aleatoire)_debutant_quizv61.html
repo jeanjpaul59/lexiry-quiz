@@ -336,6 +336,9 @@
         .replace(/[\u00AB\u00BB\u201C\u201D\u201E\u201F]/g, String.fromCharCode(34))
         .replace(/[\u00A0\u202F]/g, ' ')
         .replace(/œ/g, 'oe').replace(/Œ/g, 'Oe')
+        .replace(/\s*(")\s*/g, '$1')
+        .replace(/\s+/g, ' ')
+        .trim()
         .toLocaleLowerCase('fr');
     }
     function handleTyping(item) {
